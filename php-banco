@@ -1,0 +1,191 @@
+<?php
+if(isset($_POST['button'])){
+    include_once('formulario.php');
+    $cpf = $_POST['fcpf'];
+    $nome = $_POST['fnome'];
+    $idade = $_POST['fidade'];
+    $sexo = $_POST['fsexo'];
+    switch($sexo){
+      case 'M':
+      $value_sexo="M";
+      break;
+      default:
+      $value_sexo="F";
+    }
+    $data_nasc = $_POST['fdtnasc'];
+    
+    $nome_mae = $_POST['fnomemae'];
+    $profissao = $_POST['fprof'];
+    $rg = $_POST['frg'];
+    $data_exp_rg = $_POST['fexprg'];
+    $orgao_exp_rg = $_POST['forgrg'];
+    $endereco = $_POST['fendereco'];
+    $bairro = $_POST['fbairro'];
+    $zona = $_POST['fzona'];
+    $uf = $_POST['fuf'];
+    $data_atendimento = $_POST['fatendimento'];
+    $medico = $_POST['fmedico'];
+    $leito = $_POST['fleito'];
+    $convenio = $_POST['fconvenio'];
+    
+    $result = mysqli_query($conexao, "INSERT INTO paciente(cpf, nome, idade, sexo, data_nasc, nome_mae, profissao, rg, data_exp_rg, orgao_exp_rg, endereco, bairro, zona, uf, data_atendimento, medico, leito, convenio)
+    VALUES ('$cpf','$nome','$idade','$value_sexo','$data_nasc','$nome_mae','$profissao','$rg','$data_exp_rg','$orgao_exp_rg','$endereco','$bairro','$zona','$uf','$data_atendimento','$medico','$leito','$convenio')");
+}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <!-- Meta tags Obrigatórias -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="stylesis.css">
+  
+
+  <title>Sistema Recepção</title>
+
+</head>
+
+<body class="bg-dark">
+
+  <div class="container contact">
+  
+      <div class="col-md-12">
+        <div class="contact-form">
+          <form action="index.php" method="POST" >
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="fnome">Nome Paciente:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="fname" placeholder="Nome Paciente" name="fnome">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="lname">Idade:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="fidade" placeholder="Idade" name="fidade" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="email"  >Sexo:</label>
+              <div class="col-sm-10" >
+                <select class="form-control" aria-label="Default select example" id="fsexo"  name="fsexo" onchange="change()" >
+                  <option disabled selected>Selecione o sexo</option>
+                  <option value="M" >Masculino</option>
+                  <option value="F" >Feminino</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="comment">Data de Nascimento:</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" id="fnasc" placeholder="Idade" name="fdtnasc" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">Nome da Mãe:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="fnomeMae" placeholder="Nome da Mãe" name="fnomemae" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">Profissão:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="fprofissao" placeholder="Profissão" name="fprof">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">RG:</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="frg" placeholder="RG" name="frg">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">CPF:</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="fcpf" placeholder="CPF" name="fcpf">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="comment">Data Exp. RG:</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" id="fdataExp" placeholder="Data de expediçao do RG" name="fexprg">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">Orgão Exp. RG:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="forgao" placeholder="Orgão de expedição do RG" name="forgrg">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">Endereço:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="fendereco" placeholder="Endereço" name="fendereco">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">Bairro:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="fbairro" placeholder="Bairro" name="fbairro">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">Zona:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="fzona" placeholder="Rural ou Urbana" name="fzona">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">UF:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="fuf" placeholder="UF" name="fuf">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">Data de Atendimento:</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" id="fatendimento" placeholder="Data de Atendimento" name="fatendimento">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">Médico Responsável:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="fmedico" placeholder="Médico" name="fmedico">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">Leito:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="fleito" placeholder="Leito" name="fleito">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-5" for="lname">Convênio:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="fconvenio" placeholder="Covênio" name="fconvenio">
+              </div>
+            </div>
+            
+            <div class="form-group btn-default">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button name="button">Avançar</button>
+                
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+
+
+
+
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/JS/resgate.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+</body>
+
+</html>
