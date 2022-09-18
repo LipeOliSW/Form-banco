@@ -1,6 +1,42 @@
+//cadastro
+<?php
+    if(isset($_POST['button'])){
+        include_once('formulario.php');
+        $funcionario = $_POST['funcionario'];
+        $senha = $_POST['senha'];
+        $confirma_senha = $_POST['confirma_senha'];
+
+        if($senha==$confirma_senha){
+            $resultado = mysqli_query($conexao, "INSERT INTO funcionarios(funcionario,senha,confirma_senha)
+            VALUES('$funcionario', '$senha', '$confirma_senha')");
+        }
+        /*elseif($senha!=$confirma_senha){
+            echo "erro";
+        }*/
+    }
+?>
+//fim cadastro
+
+
+
+
+//verificacao do login
+<?php
+    if(isset($_POST['button'])){
+        include_once('formulario.php');
+        $usuario = $_POST['usuario'];
+        $senha_login = $_POST['senha_login'];
+        $userBD = mysqli_query($conexao, "SELECT (funcionario)  FROM(funcionarios)");
+        print_r($userBD);
+    }
+?>
+//fim verificacao
+
+
+
+
+
 //conexao com o banco
-
-
 <?php
     $dbHost = 'LocalHost';
     $dbUsername = 'root';
@@ -17,8 +53,10 @@
     }
     */
 ?>
+//fim conexao
 
-//fim
+
+
 
 
 <?php
