@@ -1,3 +1,26 @@
+//conexao com o banco
+
+
+<?php
+    $dbHost = 'LocalHost';
+    $dbUsername = 'root';
+    $dbPassword = '';
+    $dbName = 'formlario-tcc';
+
+        
+        $conexao =  new mysqli($dbHost, $dbUsername,$dbPassword, $dbName);
+    /*
+    if($conexao_connect_errno){
+        echo "erro";
+    }else{
+        echo "conexao efetuada";
+    }
+    */
+?>
+
+//fim
+
+
 <?php
 if(isset($_POST['button'])){
     include_once('formulario.php');
