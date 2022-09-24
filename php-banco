@@ -20,6 +20,18 @@
 
 
 
+//impressao
+function print(event){
+    const el = event.target;
+    const destino = el.getAttribute("data-destino");
+    const imprimir = window.open(destino);
+    imprimir.window.print();
+}
+//
+
+
+
+
 //verificacao do login
 <?php
     if(isset($_POST['button'])){
